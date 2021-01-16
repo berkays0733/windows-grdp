@@ -1,0 +1,17 @@
+name: Ubuntu-Grdp
+on: 
+  workflow_dispatch 
+defaults:
+  run:
+    shell: powershell
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: download grdp
+      run: |
+        Invoke-WebRequest https://dl.google.com/edgedl/chrome-remote-desktop/chromeremotedesktophost.msi
+        install-package .\chromeremotedesktophost.msi
+
+    - name: ssh into server 
+      uses: mxschmitt/action-tmate@v3
